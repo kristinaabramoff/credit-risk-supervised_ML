@@ -1,53 +1,63 @@
-# Module 12 Report Template
+# Loan Risk Prediction Application
 
-## Overview of the Analysis
+## About the Application
 
-In this analysis, we evaluated the performance of a logistic regression model used for predicting loan risk. The goal was to assess how well the model identifies healthy loans versus high-risk loans to aid in financial decision-making.
+The **Loan Risk Prediction Application** is a machine learning-based tool designed to predict the likelihood of a loan being at risk or healthy. It employs a logistic regression model to assess the loan's risk profile based on critical financial indicators, enabling financial institutions, loan officers, and decision-makers to make more informed lending decisions. The app simplifies and streamlines the process of assessing loan risk using key financial metrics.
 
-* Purpose of the Analysis: To evaluate the performance of a logistic regression model in classifying loans as either healthy or high-risk.
-* Data Description: The dataset includes loan information where each loan is labeled as either 0 (healthy loan) or 1 (high-risk loan). We aimed to predict these labels based on various financial features.
-* Variables: The variables to predict are value_counts of labels 0 and 1.
+### Key Features:
+- **Data Cleaning & Preprocessing**: The app handles missing data, normalizes input features, and converts categorical variables into numerical values to ensure model accuracy.
+- **Feature Engineering**: The logistic regression model uses carefully selected financial features, including loan size, interest rate, borrower income, debt-to-income ratio, number of accounts, derogatory marks, and total debt.
+- **Machine Learning**: The app is powered by a LogisticRegression model, optimized and evaluated with metrics like precision, recall, and F1-score to predict loan risk.
+- **User-Friendly Interface**: The Gradio interface allows users to input loan details quickly and receive instant predictions on whether a loan is healthy or at risk.
 
-* Machine Learning Process:
-Data Preparation: Cleaned and preprocessed the data.
-Model Training: Used the LogisticRegression algorithm to train the model.
-Model Evaluation: Assessed model performance using a confusion matrix and classification report.
+### How It Works:
+- **Healthy Loan (0)**: Represents a low-risk loan where the borrower is likely to meet repayment obligations.
+- **At Risk Loan (1)**: Represents a higher-risk loan where the borrower may struggle to meet their financial commitments.
+
+Users can input financial details such as loan size, borrower income, interest rate, and other key variables into the application. Based on these inputs, the app provides a prediction, helping financial institutions make well-informed decisions regarding loan approvals and risk management.
+
+---
+
 ## Results
 
-Machine Learning Model: Logistic Regression
+The model's performance is based on a logistic regression algorithm, evaluated using a confusion matrix and classification metrics:
 
-Confusion Matrix:
+**Confusion Matrix:**
+- **True Positives (TP)**: 583 (Correctly predicted high-risk loans)
+- **True Negatives (TN)**: 18,655 (Correctly predicted healthy loans)
+- **False Positives (FP)**: 110 (Healthy loans predicted as high-risk)
+- **False Negatives (FN)**: 36 (High-risk loans predicted as healthy)
 
-True Positives (TP) for High-Risk Loans: 583
-True Negatives (TN) for Healthy Loans: 18,655
-False Positives (FP) for High-Risk Loans: 110
-False Negatives (FN) for High-Risk Loans: 36
-Classification Report:
+### Classification Report:
+**Class 0 (Healthy Loan)**:
+- **Precision**: 1.00
+- **Recall**: 0.99
+- **F1-Score**: 1.00
+- **Support**: 18,765 instances
 
-Class 0 (Healthy Loan):
-Precision: 1.00
-Recall: 0.99
-F1-Score: 1.00
-Support: 18,765
-Class 1 (High-Risk Loan):
-Precision: 0.84
-Recall: 0.94
-F1-Score: 0.89
-Support: 619
-Accuracy: 0.99
-Macro Average:
-Precision: 0.92
-Recall: 0.97
-F1-Score: 0.94
-Weighted Average:
-Precision: 0.99
-Recall: 0.99
-F1-Score: 0.99
+**Class 1 (High-Risk Loan)**:
+- **Precision**: 0.84
+- **Recall**: 0.94
+- **F1-Score**: 0.89
+- **Support**: 619 instances
+
+**Overall Metrics**:
+- **Accuracy**: 0.99
+- **Macro Average**:
+  - Precision: 0.92
+  - Recall: 0.97
+  - F1-Score: 0.94
+- **Weighted Average**:
+  - Precision: 0.99
+  - Recall: 0.99
+  - F1-Score: 0.99
+
+---
 
 ## Summary
 
-* Best Performing Model: The logistic regression model performs well with an overall accuracy of 0.99 and high precision and recall for healthy loans (Class 0). The model is effective in correctly identifying healthy loans with a precision of 1.00 and a recall of 0.99.
+**Best Performing Model**: The logistic regression model delivers a high overall accuracy of 0.99, with particularly strong performance in identifying healthy loans (Class 0). It achieves perfect precision and near-perfect recall for healthy loans, making it highly reliable for low-risk predictions.
 
-* Performance Importance: Identifying high-risk loans (Class 1) is critical for managing financial risk. While the model has a high recall of 0.94 for high-risk loans, the precision is lower at 0.84. This means that some high-risk loans are incorrectly classified as healthy (false negatives), which could lead to financial losses. Although the model effectively identifies most high-risk loans, the presence of 36 false negatives is a concern.
+**Performance Importance**: The model's ability to identify high-risk loans (Class 1) is crucial for mitigating financial risks. While the recall for high-risk loans is strong at 0.94, the precision for this class is lower at 0.84. This suggests that some high-risk loans are incorrectly classified as healthy (36 false negatives), which could pose a risk to lenders.
 
-* Recommendation: Despite the strong overall performance, the lower precision for high-risk loans and the presence of false negatives highlight a need for model improvement. Reducing false negatives is crucial for better risk management. Enhancing the model to increase precision for high-risk loans would make it more reliable for identifying and managing high-risk situations. Therefore, while the model is currently effective, further tuning is recommended to improve its performance in high-risk loan detection.
+**Recommendation**: Although the model performs well overall, there is room for improvement in reducing false negatives, which would enhance its precision in detecting high-risk loans. Future iterations of the model should focus on increasing precision for high-risk loans to improve risk management and financial decision-making.
