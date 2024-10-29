@@ -17,8 +17,8 @@ The following variables are used to train the logistic regression model:
 - **Number of Accounts**  
 - **Derogatory Marks**  
 - **Total Debt**  
+![model_training](https://github.com/user-attachments/assets/53eec374-945b-4e51-99b7-19c4f1a2d58a)
 
-(*Screenshot of the dataframe goes here*)  
 
 ### Prediction Target (Y)
 - **0**: Healthy Loan (Low-risk)  
@@ -28,17 +28,19 @@ The following variables are used to train the logistic regression model:
 
 ## App Interface
 The application is powered by **Gradio** to offer a **user-friendly interface** for seamless interaction.
+![app_screenshot](https://github.com/user-attachments/assets/4da6b165-f58e-46ab-987e-6409fa799746)
 
-(*Insert a screenshot of the app interface here*)  
+
 
 - **User Input:** Loan officers can enter loan-specific data into the interface.
 - **Real-time Prediction:** The app instantly predicts whether the loan is healthy or at risk, supporting efficient decision-making.
 
 ---
 
-## Confusion Matrix & Model Performance
+## Confusion Matrix & Classification Report
+![accuracy](https://github.com/user-attachments/assets/bfca264b-37b3-4601-9b05-c9ba52ab7b71)
 
-(*Insert confusion matrix screenshot here*)
+
 
 - **Confusion Matrix Results:**
   - **True Positives (TP):** 583 (Correctly predicted high-risk loans)  
