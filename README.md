@@ -92,4 +92,7 @@ The **Loan Risk Prediction Application** delivers **high accuracy (0.99)** with 
 
 ![accuracy](https://github.com/user-attachments/assets/46a0e2d6-2ae0-4dee-9a2e-00a3ff20b09f)
 
----
+# How to use
+
+clone this repository 
+see app deployment instructions to run the application on your local computer 
