@@ -1,24 +1,38 @@
 import gradio as gr
-import numpy as np
 import joblib
 import pandas as pd
 
-# Load the trained model
-classifier = joblib.load('logistic_model.pkl')
+# Load the trained Logistic Regression and XGBoost models
+logistic_model = joblib.load('logistic_model.pkl')
+xgb_model = joblib.load('xgboost_model.pkl')
 
-# Define the feature names (these must match the column names used during training)
+# Load the scaler that was applied during training
+scaler = joblib.load('scaler.pkl')
+
+# Define the feature names (must match the columns used during training)
 feature_names = ['loan_size', 'interest_rate', 'borrower_income', 'debt_to_income', 'num_of_accounts', 'derogatory_marks', 'total_debt']
 
-
 # Define the prediction function
-def predict(loan_amount, interest_rate, borrowers_income, debt_to_income, num_of_accounts, derogatory_marks, total_debt):
-    input_data = pd.DataFrame([[loan_amount, interest_rate, borrowers_income, debt_to_income, num_of_accounts, derogatory_marks, total_debt]], 
-                              columns=feature_names)  # Use a DataFrame with the same feature names
-    prediction = classifier.predict(input_data)
+def predict(model_choice, loan_amount, interest_rate, borrowers_income, debt_to_income, num_of_accounts, derogatory_marks, total_debt):
+    # Prepare the input data in the same format as during training
+    input_data = pd.DataFrame([[loan_amount, interest_rate, borrowers_income, debt_to_income, num_of_accounts, derogatory_marks, total_debt]],
+                              columns=feature_names)
+    
+    # Scale the input data using the saved scaler
+    input_data_scaled = scaler.transform(input_data)  # Apply scaling
+    
+    # Select the model based on user choice
+    if model_choice == "Logistic Regression":
+        prediction = logistic_model.predict(input_data_scaled)
+    elif model_choice == "XGBoost":
+        prediction = xgb_model.predict(input_data_scaled)
+    
+    # Return the prediction result
     return "At Risk Loan" if prediction[0] == 1 else "Healthy Loan"
 
-# Define input components for the Gradio interface using the updated syntax
+# Define input components for the Gradio interface
 input_features = [
+    gr.Dropdown(label="Select Model", choices=["Logistic Regression", "XGBoost"], value="Logistic Regression"),
     gr.Number(label="Loan Amount"),
     gr.Number(label="Interest Rate"),
     gr.Number(label="Borrowers Income (Annual)"),
@@ -30,13 +44,12 @@ input_features = [
 
 # Create the Gradio interface
 interface = gr.Interface(
-    fn=predict, 
-    inputs=input_features, 
+    fn=predict,
+    inputs=input_features,
     outputs="text",
-    title="Logistic Regression Loan Predictor",
-    description="Enter the loan and financial details to get a prediction on the loan's risk."
+    title="Loan Risk Predictor",
+    description="Enter loan and financial details to predict loan risk."
 )
 
-# Launch the interface with the option to share publicly
+# Launch the Gradio interface
 interface.launch(share=True)
-
