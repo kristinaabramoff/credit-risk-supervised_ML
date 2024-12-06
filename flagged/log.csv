@@ -1,0 +1,2 @@
+Select Model,Loan Amount,Interest Rate,Borrowers Income (Annual),Debt-to-Income Ratio,Number of Accounts,Derogatory Marks (0 or 1),Total Debt,output,flag,username,timestamp
+XGBoost,1000000,6.5,50000,1,1,0,50000,Healthy Loan,,,2024-12-06 10:37:41.916430
